@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Webpage</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Time Tracker</h1>
+    <form id="time-form">
+        <label for="start-time">Time Start:</label>
+        <input type="time" id="start-time" name="start-time"><br><br>
+        <label for="end-time">Time End:</label>
+        <input type="time" id="end-time" name="end-time"><br><br>
+        <label for="message">Message:</label>
+        <textarea id="message" name="message"></textarea><br><br>
+        <button id="submit-btn">Submit</button>
+        <button id="save-btn" style="display: none;">Save to CSV</button>
+    </form>
+
+    <div id="output"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
