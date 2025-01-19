@@ -1,38 +1,127 @@
-const form = document.getElementById('time-form');
-const outputDiv = document.getElementById('output');
 
-form.addEventListener('submit', (e) => {
-    e.preventDefault();
+function copyTextField() {
 
-    const startTime = document.getElementById('start-time').value.trim(); // valueAsNumber();
-    const endTime = document.getElementById('end-time').value.trim(); // valueAsNumber();
-    const message = document.getElementById('message').value.trim();
+  // Get the text field
+  var copyText = document.getElementById("myInput");
 
-    if (!startTime || !endTime || !message) {
-        outputDiv.innerText = 'Please fill all fields';
-        return;
-    }
+  // Select the text field
+  copyText.select();
+  copyText.setSelectionRange(0, 99999); // For mobile devices
 
-    // const result = `Time: ${startTime} - ${endTime}\nMessage: ${message}`;
-    const result = `${startTime}, ${endTime}, ${message}`;
-    // outputDiv.innerText += result + '<br><hr>';
+   // Copy the text inside the text field
+  navigator.clipboard.writeText(copyText.value);
 
-    // Show the save button
-    document.getElementById('save-btn').style.display = 'block';
+  // Show output message
+  document.getElementById("output").innerHTML = "Text copied!";
 
-    // Add event listener to save button
-    form.addEventListener('click', (e) => {
-        if (e.target.id === 'save-btn') {
-            e.preventDefault();
-            saveToCSV(result);
-        }
-    });
-});
+  // Revert output message
+  setTimeout(function() {
+    document.getElementById("output").innerHTML = ""
+  }, 3000);
+};
 
-function saveToCSV(data) {
-    const csvData = `Start, Stop, Message\n${data}`;
-    const link = document.createElement('a');
-    link.href = URL.createObjectURL(new Blob([csvData], { type: 'text/csv' }));
-    link.download = 'results.csv';
-    link.click();
+function setStartTime() {
+  var now = new Date();
+  const hours = now.getHours().toString().padStart (2,'0');
+  const minutes = now.getMinutes().toString().padStart (2, '0');
+  document.getElementById('startTime').value = `${hours}:${minutes}`;
+};
+
+function setEndTime() {
+  var now = new Date();
+  const hours = now.getHours().toString().padStart (2,'0');
+  const minutes = now.getMinutes().toString().padStart (2, '0');
+  document.getElementById('endTime').value = `${hours}:${minutes}`;
+};
+
+var x;
+var toggle = 0;
+
+function toggleTimer() {
+  toggle++
+  if (toggle === 1) {
+    startTimer();
+    document.getElementById("start").innerHTML = "Stop";
+  } else if (toggle === 2) {
+    document.getElementById("start").innerHTML = "Start";
+    toggle = 0
+    stopTimer();
+  }
+}
+
+function startTimer() {
+  x = setInterval(timer, 10);
+}
+
+function stopTimer() {
+  clearInterval(x);
+}
+
+var sec = 0
+var min = 0
+
+var secOut = 0
+var minOut = 0
+
+function timer() {
+
+  sec++;
+
+  if (sec == 60) {
+    min++;
+    sec = 0;
+  }
+
+  secOut = checkTime(sec);
+  minOut = checkTime(min);
+
+  document.getElementById("timerSeconds").innerHTML = secOut;
+  document.getElementById("timerMinutes").value = minOut;
+}
+
+function checkTime(i) {
+  if (i < 10) {
+    i = "0" + i;
+  }
+  return i;
+}
+
+function resetTimer() {
+
+  sec = 0;
+  min = 0;
+
+  document.getElementById("timerSeconds").innerHTML = "00";
+  document.getElementById("timerMinutes").value = "00";
+}
+
+function clearAll() {
+  sec = 0
+  min = 0
+  document.getElementById("startTime").value = 0;
+  document.getElementById("endTime").value = 0;
+  document.getElementById("timerSeconds").innerHTML = "00";
+  document.getElementById("timerMinutes").value = "00";
+}
+
+// Generate timeBased
+
+function generateOutput() {
+  var startTime = document.getElementById("startTime").value;
+  var splitStart = startTime.split(":");
+  var startMin = Number(splitStart[0]) * 60 + Number(splitStart[1]);
+  var endTime = document.getElementById("endTime").value;
+  var splitEnd = endTime.split (":");
+  var endMin = Number(splitEnd[0]) * 60 + Number(splitEnd[1]);
+  var visitMinutes = endMin - startMin;
+  var addMinutes = document.getElementById("timerMinutes").value;
+  var totalTime = visitMinutes + Number(addMinutes);
+  var finalOutput = "Visit start time: " + startTime + "\nVisit end time: " + endTime;
+  if (addMinutes > 0) {
+    finalOutput += "\nAdditional minutes outside of visit (reviewing notes, ordering tests, prescribing medications): " + addMinutes;
+  };
+  finalOutput += "\nTotal minutes spent on encounter: " + totalTime;
+
+  document.getElementById("myInput").innerHTML = finalOutput;
+
 }
