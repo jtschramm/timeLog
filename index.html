@@ -1,26 +1,53 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simple Webpage</title>
-    <link rel="stylesheet" href="style.css">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+  	<link rel="stylesheet" href="style.css">
+	<title>Visit Time Log</title>
 </head>
 <body>
-    <h1>Time Tracker</h1>
-    <form id="time-form">
-        <label for="start-time">Time Start:</label>
-        <input type="time" id="start-time" name="start-time"><br><br>
-        <label for="end-time">Time End:</label>
-        <input type="time" id="end-time" name="end-time"><br><br>
-        <label for="message">Message:</label>
-        <textarea id="message" name="message"></textarea><br><br>
-        <button id="submit-btn">Submit</button>
-        <button id="save-btn" style="display: none;">Save to CSV</button>
-    </form>
 
-    <div id="output"></div>
 
-    <script src="script.js"></script>
+
+<!-- Start and End time input -->
+<label for="startTime">Start time:</label>
+<br>
+<input type="time" id="startTime" name="startTime">
+<button onclick = "setStartTime()"> Now </button>
+<br><br>
+<label for="endTime">End time:</label>
+<br>
+<input type="time" id="endTime" name="endTime">
+<button onclick = "setEndTime()"> Now </button>
+<br><br>
+
+
+<!-- Additional time timer -->
+<label for="timerMinutes">Additional minutes:</label>
+<br>
+<input type="number" id="timerMinutes" name="timerMinutes" value = "00">
+<span id = "timerSeconds">00</span>
+<button onclick = "toggleTimer()" id="start"> Start </button>
+<button onclick = "resetTimer()"> Reset </button>
+<br><br>
+
+<!-- Clear all values -->
+<button onclick = "clearAll()"> Clear all </button>
+
+<br><br><br>
+
+<!-- Text box with copy -->
+<textarea value="" id="myInput" name = "myInput" rows="5" cols = "50"></textarea>
+<br>
+<button onclick="generateOutput()"> Fill </button>
+<button onclick="copyTextField()"> Copy text </button>
+
+
+
+
+<div id="output"></div>
+<script src="script.js"></script>
+
 </body>
 </html>
