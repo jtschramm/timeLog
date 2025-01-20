@@ -1,5 +1,6 @@
 
 function copyTextField() {
+  generateOutput();
 
   // Get the text field
   var copyText = document.getElementById("myInput");
@@ -122,6 +123,11 @@ function generateOutput() {
   };
   finalOutput += "\nTotal minutes spent on encounter: " + totalTime;
 
-  document.getElementById("myInput").innerHTML = finalOutput;
+  if (document.getElementById("myInput").value) {
+    finalOutput += "\nNotes: " + document.getElementById("myInput").value;
+  }
+
+  document.getElementById("myInput").value = finalOutput;
+  // document.getElementById("myInput").innerHTML = finalOutput;
 
 }
