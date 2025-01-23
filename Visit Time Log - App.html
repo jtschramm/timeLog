@@ -149,7 +149,9 @@ function resetTimer() {
 
   sec = 0;
   min = 0;
-
+  document.getElementById("timerStartButton").innerHTML = "Start";
+  toggle = 0
+  stopTimer();
   document.getElementById("timerSeconds").innerHTML = "00";
   document.getElementById("timerMinutes").value = "00";
 }
@@ -159,8 +161,8 @@ function clearAll() {
   min = 0
   document.getElementById("startTime").value = 0;
   document.getElementById("endTime").value = 0;
-  document.getElementById("timerSeconds").innerHTML = "00";
-  document.getElementById("timerMinutes").value = "00";
+  resetTimer();
+
 }
 
 // Generate text to be copied
