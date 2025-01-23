@@ -7,7 +7,7 @@
 </head>
 <body>
 
-
+<maincontainer>
 <div class="div1">
 	<!-- Start and End time input -->
 	<label for="startTime">Start time:</label>
@@ -27,6 +27,7 @@
 	<br>
 	<textarea id="notes" name="notes" rows="1"></textarea>
 </div>
+</maincontainer>
 <br><br>
 
 
@@ -45,7 +46,7 @@
 <br><br>
 
 <!-- Text box with copy -->
-<textarea value="" id="myInput" name = "myInput" rows="10" cols = "46"></textarea>
+<textarea value="" id="myInput" name = "myInput" rows="10" cols = "45"></textarea>
 <br>
 <button onclick="copyTextField()"> Copy text </button> <span iD = "output"></span>
 
@@ -226,15 +227,21 @@ body {
     max-width: 370px;
 }
 
-div {
+maincontainer {
+	width: 100%;
+	height: 100%;
+}
+
+div.div1 {
     display: inline-block;
+    width: 160px;
 }
 
 div.div2 {
+    display: inline-block;
     vertical-align: top;
-    padding-left: 30px;
+    padding-left: 15px;
     padding-top: 18px;
-    margin: 20;
 }
 
 button {
