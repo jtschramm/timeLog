@@ -9,17 +9,25 @@
 <body>
 
 
-
-<!-- Start and End time input -->
-<label for="startTime">Start time:</label>
-<br>
-<input type="time" id="startTime" name="startTime">
-<button onclick = "setStartTime()"> Now </button>
-<br><br>
-<label for="endTime">End time:</label>
-<br>
-<input type="time" id="endTime" name="endTime">
-<button onclick = "setEndTime()"> Now </button>
+<div class="div1">
+	<!-- Start and End time input -->
+	<label for="startTime">Start time:</label>
+	<br>
+	<input type="time" id="startTime" name="startTime">
+	<button id="startTimeButton"> Now </button>
+	<br><br>
+	<label for="endTime">End time:</label>
+	<br>
+	<input type="time" id="endTime" name="endTime">
+	<button id="endTimeButton"> Now </button>
+</div>
+<div class="div2">
+	<button onclick="openNew()"> Open New Page</button>
+	<br><br>
+	<label for ="notes">Notes:</label>
+	<br>
+	<textarea id="notes" name="notes" rows="1"></textarea>
+</div>
 <br><br>
 
 
@@ -28,25 +36,20 @@
 <br>
 <input type="number" id="timerMinutes" name="timerMinutes" value = "00">
 <span id = "timerSeconds">00</span>
-<button onclick = "toggleTimer()" id="start"> Start </button>
-<button onclick = "resetTimer()"> Reset </button>
+<button onclick = "toggleTimer()" id="timerStartButton"> Start </button>
+<button onclick = "resetTimer()" id="timerResetButton"> Reset </button>
 <br><br>
 
 <!-- Clear all values -->
 <button onclick = "clearAll()"> Clear all </button>
 
-<br><br><br>
+<br><br>
 
 <!-- Text box with copy -->
-<textarea value="" id="myInput" name = "myInput" rows="5" cols = "50"></textarea>
+<textarea value="" id="myInput" name = "myInput" rows="10" cols = "46"></textarea>
 <br>
-<button onclick="generateOutput()"> Fill </button>
-<button onclick="copyTextField()"> Copy text </button>
+<button onclick="copyTextField()"> Copy text </button> <span iD = "output"></span>
 
-
-
-
-<div id="output"></div>
 <script src="script.js"></script>
 
 </body>
