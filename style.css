@@ -3,9 +3,22 @@
 body {
     font-family: verdana, sans-serif;
     color: whitesmoke;
-    background-color: black;
-    vertical-align: middle;
-    
+    background-color: #1B263B;
+    vertical-align: auto;
+    margin: 20;
+    padding: 20;
+    max-width: 370px;
+}
+
+div {
+    display: inline-block;
+}
+
+div.div2 {
+    vertical-align: top;
+    padding-left: 30px;
+    padding-top: 18px;
+    margin: 20;
 }
 
 button {
@@ -17,14 +30,14 @@ button {
     text-decoration: none;
     outline: none;
     color: #fff;
-    background-color: #04AA6D;
+    background-color: #415A77;
     border: none;
     border-radius: 15px;
     box-shadow: 0 5px #999;
 }
 
 button:active {
-  background-color: #04AA6D;
-  box-shadow: 0 3px #666;
+  background-color: #415A77;
+  box-shadow: 0 3px #e0e1dd;
   transform: translateY(4px);
 }
