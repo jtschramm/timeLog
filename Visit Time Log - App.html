@@ -7,27 +7,28 @@
 </head>
 <body>
 
-<maincontainer>
 <div class="div1">
 	<!-- Start and End time input -->
 	<label for="startTime">Start time:</label>
 	<br>
 	<input type="time" id="startTime" name="startTime">
 	<button id="startTimeButton"> Now </button>
-	<br><br>
-	<label for="endTime">End time:</label>
-	<br>
-	<input type="time" id="endTime" name="endTime">
-	<button id="endTimeButton"> Now </button>
 </div>
 <div class="div2">
 	<button onclick="openNew()"> Open New Page</button>
-	<br><br>
-	<label for ="notes">Notes:</label>
-	<br>
-	<textarea id="notes" name="notes" rows="1"></textarea>
 </div>
-</maincontainer>
+<br><br>
+<div class="div1">
+  <label for="endTime">End time:</label>
+  <br>
+  <input type="time" id="endTime" name="endTime">
+  <button id="endTimeButton"> Now </button>
+</div>
+<div class="div2">
+  <label for ="notes">Notes:</label>
+  <br>
+  <textarea id="notes" name="notes" rows="1"></textarea>
+</div>
 <br><br>
 
 
@@ -227,20 +228,14 @@ body {
     max-width: 370px;
 }
 
-maincontainer {
-	width: 100%;
-	height: 100%;
-}
 
 div.div1 {
     display: inline-block;
-    width: 250px;
+    width: 180px;
 }
 
 div.div2 {
     display: inline-block;
-    vertical-align: top;
-    padding-top: 18px;
 }
 
 button {
