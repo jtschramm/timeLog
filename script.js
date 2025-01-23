@@ -1,18 +1,24 @@
 
 function copyTextField() {
+  var startCheck = document.getElementById("startTime").value;
+  var endCheck = document.getElementById("endTime").value
+  if (startCheck != "" && endCheck != "") {
+    
+    // Get the text field
+    var copyText = document.getElementById("myInput");
 
-  // Get the text field
-  var copyText = document.getElementById("myInput");
+    // Select the text field
+    copyText.select();
+    copyText.setSelectionRange(0, 99999); // For mobile devices
 
-  // Select the text field
-  copyText.select();
-  copyText.setSelectionRange(0, 99999); // For mobile devices
+    // Copy the text inside the text field
+    navigator.clipboard.writeText(copyText.value);
 
-   // Copy the text inside the text field
-  navigator.clipboard.writeText(copyText.value);
-
-  // Show output message
-  document.getElementById("output").innerHTML = "Text copied!";
+    // Show output message
+    document.getElementById("output").innerHTML = "Text copied";
+  } else {
+    document.getElementById("output").innerHTML = "Enter visit start/stop times";
+  };
 
   // Revert output message
   setTimeout(function() {
@@ -41,16 +47,16 @@ function toggleTimer() {
   toggle++
   if (toggle === 1) {
     startTimer();
-    document.getElementById("start").innerHTML = "Stop";
+    document.getElementById("timerStartButton").innerHTML = "Stop";
   } else if (toggle === 2) {
-    document.getElementById("start").innerHTML = "Start";
+    document.getElementById("timerStartButton").innerHTML = "Start";
     toggle = 0
     stopTimer();
   }
 }
 
 function startTimer() {
-  x = setInterval(timer, 10);
+  x = setInterval(timer, 1000);
 }
 
 function stopTimer() {
@@ -77,6 +83,7 @@ function timer() {
 
   document.getElementById("timerSeconds").innerHTML = secOut;
   document.getElementById("timerMinutes").value = minOut;
+  generateOutput();
 }
 
 function checkTime(i) {
@@ -104,7 +111,7 @@ function clearAll() {
   document.getElementById("timerMinutes").value = "00";
 }
 
-// Generate timeBased
+// Generate text to be copied
 
 function generateOutput() {
   var startTime = document.getElementById("startTime").value;
@@ -118,10 +125,33 @@ function generateOutput() {
   var totalTime = visitMinutes + Number(addMinutes);
   var finalOutput = "Visit start time: " + startTime + "\nVisit end time: " + endTime;
   if (addMinutes > 0) {
-    finalOutput += "\nAdditional minutes outside of visit (reviewing notes, ordering tests, prescribing medications): " + addMinutes;
+    finalOutput += "\nAdditional time outsite of visit: " + addMinutes + " minutes";
   };
-  finalOutput += "\nTotal minutes spent on encounter: " + totalTime;
+  finalOutput += "\nTime for this encounter was spent by the physician in chart preparation, history and exam, counseling, ordering of medications/tests, documenting, and communicating available results to the patient.\nThe total time spent on these activities on the day of the encounter amounted to: " + totalTime + " minutes"
 
   document.getElementById("myInput").innerHTML = finalOutput;
 
+}
+
+document.getElementById("startTime").addEventListener('input', (event) => {
+  generateOutput();
+});
+document.getElementById("startTimeButton").addEventListener ('click', (event) => {
+  setStartTime();
+  generateOutput();
+});
+document.getElementById("endTime").addEventListener('input', (event) => {
+generateOutput();
+});
+document.getElementById("endTimeButton").addEventListener('click', (event) => {
+  setEndTime();
+  generateOutput();
+});
+document.getElementById("timerMinutes").addEventListener('input', (event) => {
+  generateOutput();
+});
+
+function openNew() {
+  let currentLocation = window.location.href
+  window.open(currentLocation, '_blank').focus();
 }
