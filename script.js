@@ -1,4 +1,3 @@
-
 function copyTextField() {
   var startCheck = document.getElementById("startTime").value;
   var endCheck = document.getElementById("endTime").value
@@ -64,12 +63,10 @@ function stopTimer() {
 }
 
 var sec = 0
-var min = 0
-
 var secOut = 0
-var minOut = 0
 
 function timer() {
+  var min = document.getElementById("timerMinutes").value;
 
   sec++;
 
@@ -79,10 +76,9 @@ function timer() {
   }
 
   secOut = checkTime(sec);
-  minOut = checkTime(min);
 
   document.getElementById("timerSeconds").innerHTML = secOut;
-  document.getElementById("timerMinutes").value = minOut;
+  document.getElementById("timerMinutes").value = min
   generateOutput();
 }
 
@@ -99,7 +95,7 @@ function resetTimer() {
   min = 0;
 
   document.getElementById("timerSeconds").innerHTML = "00";
-  document.getElementById("timerMinutes").value = "00";
+  document.getElementById("timerMinutes").value = "0";
 }
 
 function clearAll() {
@@ -108,7 +104,7 @@ function clearAll() {
   document.getElementById("startTime").value = 0;
   document.getElementById("endTime").value = 0;
   document.getElementById("timerSeconds").innerHTML = "00";
-  document.getElementById("timerMinutes").value = "00";
+  document.getElementById("timerMinutes").value = "0";
 }
 
 // Generate text to be copied
@@ -125,7 +121,7 @@ function generateOutput() {
   var totalTime = visitMinutes + Number(addMinutes);
   var finalOutput = "Visit start time: " + startTime + "\nVisit end time: " + endTime;
   if (addMinutes > 0) {
-    finalOutput += "\nAdditional time outsite of visit: " + addMinutes + " minutes";
+    finalOutput += "\nAdditional time outside of visit: " + addMinutes + " minutes";
   };
   finalOutput += "\nTime for this encounter was spent by the physician in chart preparation, history and exam, counseling, ordering of medications/tests, documenting, and communicating available results to the patient.\nThe total time spent on these activities on the day of the encounter amounted to: " + totalTime + " minutes"
 
