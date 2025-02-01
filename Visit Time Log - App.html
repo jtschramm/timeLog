@@ -7,27 +7,25 @@
 </head>
 <body>
 
+
 <div class="div1">
 	<!-- Start and End time input -->
 	<label for="startTime">Start time:</label>
 	<br>
 	<input type="time" id="startTime" name="startTime">
 	<button id="startTimeButton"> Now </button>
+	<br><br>
+	<label for="endTime">End time:</label>
+	<br>
+	<input type="time" id="endTime" name="endTime">
+	<button id="endTimeButton"> Now </button>
 </div>
 <div class="div2">
 	<button onclick="openNew()"> Open New Page</button>
-</div>
-<br><br>
-<div class="div1">
-  <label for="endTime">End time:</label>
-  <br>
-  <input type="time" id="endTime" name="endTime">
-  <button id="endTimeButton"> Now </button>
-</div>
-<div class="div2">
-  <label for ="notes">Notes:</label>
-  <br>
-  <textarea id="notes" name="notes" rows="1"></textarea>
+	<br><br>
+	<label for ="notes">Notes:</label>
+	<br>
+	<textarea id="notes" name="notes" rows="1"></textarea>
 </div>
 <br><br>
 
@@ -35,7 +33,7 @@
 <!-- Additional time timer -->
 <label for="timerMinutes">Additional minutes:</label>
 <br>
-<input type="number" id="timerMinutes" name="timerMinutes" value = "00">
+<input type="number" id="timerMinutes" name="timerMinutes" value = "0">
 <span id = "timerSeconds">00</span>
 <button onclick = "toggleTimer()" id="timerStartButton"> Start </button>
 <button onclick = "resetTimer()" id="timerResetButton"> Reset </button>
@@ -47,7 +45,7 @@
 <br><br>
 
 <!-- Text box with copy -->
-<textarea value="" id="myInput" name = "myInput" rows="10" cols = "45"></textarea>
+<textarea value="" id="myInput" name = "myInput" rows="10" cols = "46"></textarea>
 <br>
 <button onclick="copyTextField()"> Copy text </button> <span iD = "output"></span>
 
@@ -118,12 +116,10 @@ function stopTimer() {
 }
 
 var sec = 0
-var min = 0
-
 var secOut = 0
-var minOut = 0
 
 function timer() {
+  var min = document.getElementById("timerMinutes").value;
 
   sec++;
 
@@ -133,10 +129,9 @@ function timer() {
   }
 
   secOut = checkTime(sec);
-  minOut = checkTime(min);
 
   document.getElementById("timerSeconds").innerHTML = secOut;
-  document.getElementById("timerMinutes").value = minOut;
+  document.getElementById("timerMinutes").value = min
   generateOutput();
 }
 
@@ -151,11 +146,9 @@ function resetTimer() {
 
   sec = 0;
   min = 0;
-  document.getElementById("timerStartButton").innerHTML = "Start";
-  toggle = 0
-  stopTimer();
+
   document.getElementById("timerSeconds").innerHTML = "00";
-  document.getElementById("timerMinutes").value = "00";
+  document.getElementById("timerMinutes").value = "0";
 }
 
 function clearAll() {
@@ -163,8 +156,8 @@ function clearAll() {
   min = 0
   document.getElementById("startTime").value = 0;
   document.getElementById("endTime").value = 0;
-  resetTimer();
-
+  document.getElementById("timerSeconds").innerHTML = "00";
+  document.getElementById("timerMinutes").value = "0";
 }
 
 // Generate text to be copied
@@ -228,14 +221,15 @@ body {
     max-width: 370px;
 }
 
-
-div.div1 {
+div {
     display: inline-block;
-    width: 180px;
 }
 
 div.div2 {
-    display: inline-block;
+    vertical-align: top;
+    padding-left: 30px;
+    padding-top: 18px;
+    margin: 20;
 }
 
 button {
