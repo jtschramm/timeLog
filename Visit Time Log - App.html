@@ -40,7 +40,7 @@
 <br><br>
 
 <!-- Clear all values -->
-<button onclick = "clearAll()"> Clear all </button>
+<button onclick = "clearAll()" id="clearAllButton"> Clear all </button>
 
 <br><br>
 
@@ -198,6 +198,12 @@ document.getElementById("endTimeButton").addEventListener('click', (event) => {
 });
 document.getElementById("timerMinutes").addEventListener('input', (event) => {
   generateOutput();
+});
+document.getElementById("timerResetButton").addEventListener('click', (event) => {
+	generateOutput();
+});
+document.getElementById("clearAllButton").addEventListener('click', (event) => {
+	generateOutput();
 });
 
 function openNew() {
